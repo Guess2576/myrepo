@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Database</title>
+</head>
+<body>
+    <h1>Student Database</h1>
+    <a href="/enter_data"><button>Add New Data Here</button></a>
+    <a href="/delete"><button>Delete Data</button></a>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Average Score</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.average_score }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

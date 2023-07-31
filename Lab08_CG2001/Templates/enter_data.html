@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Student Data</title>
+</head>
+<body>
+    <h1>Enter Student Data</h1>
+    <a href="/">Back to Student Database</a>
+    <form method="POST" action="/enter_data">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required><br>
+
+        <label for="midterm_exam1">Midterm Exam 1:</label>
+        <input type="number" name="midterm_exam1" step="0.01" required><br>
+
+        <label for="midterm_exam2">Midterm Exam 2:</label>
+        <input type="number" name="midterm_exam2" step="0.01" required><br>
+
+        <label for="final_exam">Final Exam:</label>
+        <input type="number" name="final_exam" step="0.01" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
