@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
+  
+
+  header {
+    background-color: white;                      /* Background color for the header */
+    padding: 20px; 
+    text-align: center; 
+    position: sticky;                               /* "Make the gallery title in the header sticky, so it remains at the top of the viewport when users scroll." */
+    top: 0; 
+    z-index: 1;                                     /* "You may want to consider using z-index property to ensure that the overlay and icon is visible." */
+  }
+  
+
+  main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);          /* Learned from https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns  to make set amounts per row and column */
+    grid-template-rows: repeat(2, auto); 
+    gap: 20px;                                      /* "Add some spacing between your grid items using the gap property." */
+    padding: 20px; 
+    justify-content: center;                        /* Center grid */
+    align-items: center;                            /* Center grid */
+  }
+  
+ 
+  .grid-item {
+    width: 100%;                                    /* "Define a specific height and width for the grid items, e.g., 300px x 300px." */
+    height: 400px;
+    background-size: cover;                         /* "Ensure that each background image covers the entire grid item" */
+    background-position: center;                    /* "Position each image to the center" */
+    border-radius: 10px;                            /* "Round the corners of each grid item and give it a border." */
+    border: 2px solid #ccc;                       /* Add border to items*/
+    position: relative;                             /* make pseudo elements have position */
+    overflow: hidden;                               /* make so that pseudo-elemnts don't show their overflow from the grid item       learned from: https://developer.mozilla.org/en-US/docs/Web/CSS/overflow*/
+  }
+  
+
+  .grid-item:hover {                                /* "For grid items, implement a hover effect using the :hover pseudo-class." */
+    filter: brightness(0.7);                        /* make hover darken the grid items */
+  }
+  
+
+  .grid-item::before {                              /* "Use the ::before pseudo-element to add a semi-transparent overlay on top of the grid items when they are hovered upon (hint: use gradient background)." */
+    content: attr(data-caption);                    /* Display caption over grid item. Learned from: https://stackoverflow.com/questions/51580629/html-codes-in-data-caption-for-formatted-text */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);               /* center caption */
+    color: white;                                 /* caption color */
+    font-size: 20px; 
+    opacity: 0;                                     /* make caption invisible before hover */
+  }
+  
+
+  .grid-item:hover::before {
+    opacity: 1;                                     /* make caption visible after hover */
+  }
+  
+
+  .grid-item::after {                               /* "Use the ::after pseudo-element to add a magnifying glass icon on the hovered grid items." */
+    content: "";                                    /* allow magnifying glass png as content */
+    position: absolute;
+    top: 50%; /* positioning */
+    left: 50%; /* positioning */
+    transform: translate(-50%, -50%);               /* center magnifying glass */
+    width: 24px;                                    /* size of magnifying glass */
+    height: 24px;                                   /* size of magnifying glass */
+    background-image: url('magnify.png');           /* magnifying glass image */
+    background-size: cover;
+    opacity: 0;                                     /* make invisible before hover */
+  }
+  
+
+  .grid-item:hover::after {
+    opacity: 1;                                     /* make magnifying glass visible when hovered */
+  }
+
+  .grid-item:nth-child(even) {                      /* "Use the :nth-child() pseudo-class to style every other grid item with a different border style." */
+    border-style: 2px dashed;                       /* add dashed border for even numbered grid items */
+  }
+
+  .grid-item:nth-child(odd) {
+    border-style: 2px solid;                        /* add solid border for odd numbered grid items */
+  }
+
+  .grid-item:not(:first-child):hover {
+    filter: brightness(0.7);                        /* make hover effects apply to all but the first one*/
+                                                     /* i chose this one at random */
+  }
